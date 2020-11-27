@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { QuestionService } from './services/question.service';
+import { QuestionBase } from './models/questionbase';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dynamicui';
+
+  questions$: Observable<QuestionBase<any>[]>;
+
+  constructor(service: QuestionService){
+    this.questions$ = service.getQuestions();
+  }
 }
